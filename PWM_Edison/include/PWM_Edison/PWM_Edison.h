@@ -276,6 +276,7 @@ class PWM_Edison
 
  private:
   mraa::Pwm* pwm;
+  int last_pin;
   // <rtc-template block="private_attribute">
   
   // </rtc-template>

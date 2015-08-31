@@ -20,7 +20,7 @@ static const char* temperaturesensor_adt7410_spec[] =
     "description",       "TemperatureSensor_ADT7410",
     "version",           "1.0.0",
     "vendor",            "Miyamoto Nobuhiko",
-    "category",          "Device",
+    "category",          "Sensor",
     "activity_type",     "PERIODIC",
     "kind",              "DataFlowComponent",
     "max_instance",      "1",
@@ -160,6 +160,7 @@ RTC::ReturnCode_t TemperatureSensor_ADT7410::onExecute(RTC::UniqueId ec_id)
 	if(tempSensor)
 	{
 		m_out.data = tempSensor->getTempData();
+		setTimestamp(m_out);
 		m_outOut.write();
 	}
   return RTC::RTC_OK;

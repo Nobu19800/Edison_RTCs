@@ -245,6 +245,7 @@ void ADC_MCP3002Comp::writeValue(MCP3002 *mcp, double v)
 	if(act)
 	{
 		Out->data = v/1028.0 * (double)mcp->getValue(m_num);
+		setTimestamp(*Out);
 		outOut->write();
 	}
 }

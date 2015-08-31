@@ -257,6 +257,7 @@ RTC::ReturnCode_t NineAxisSensor_LSM9DS0_I2C::onExecute(RTC::UniqueId ec_id)
 		m_acc.data.ax = ax;
 		m_acc.data.ay = ay;
 		m_acc.data.az = az;
+		setTimestamp(m_acc);
 		m_accOut.write();
 
 		
@@ -267,6 +268,7 @@ RTC::ReturnCode_t NineAxisSensor_LSM9DS0_I2C::onExecute(RTC::UniqueId ec_id)
 		m_magn.data[0] = mx;
 		m_magn.data[1] = my;
 		m_magn.data[2] = mz;
+		setTimestamp(m_magn);
 		m_magnOut.write();
 
 
@@ -275,11 +277,13 @@ RTC::ReturnCode_t NineAxisSensor_LSM9DS0_I2C::onExecute(RTC::UniqueId ec_id)
 		m_gyro.data.avx = avx;
 		m_gyro.data.avy = avy;
 		m_gyro.data.avz = avz;
+		setTimestamp(m_gyro);
 		m_gyroOut.write();
 
 
 
 		m_temp.data = accSensor->getTemp();
+		setTimestamp(m_temp);
 		m_tempOut.write();
 
 		
@@ -290,6 +294,7 @@ RTC::ReturnCode_t NineAxisSensor_LSM9DS0_I2C::onExecute(RTC::UniqueId ec_id)
 		m_rot.data.p = ry;
 		m_rot.data.y = rz - m_offset;
 
+		setTimestamp(m_rot);
 		m_rotOut.write();
 
 		

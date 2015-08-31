@@ -47,6 +47,7 @@ PWM_Edison::PWM_Edison(RTC::Manager* manager)
     // </rtc-template>
 {
 	pwm = NULL;
+	last_pin = -1;
 }
 
 /*!
@@ -112,13 +113,20 @@ RTC::ReturnCode_t PWM_Edison::onShutdown(RTC::UniqueId ec_id)
 
 RTC::ReturnCode_t PWM_Edison::onActivated(RTC::UniqueId ec_id)
 {
-	if(pwm == NULL)
+	if(last_pin != m_pin)
 	{
+		if(pwm)
+		{
+			pwm->write(0);
+			pwm->enable(false);
+			delete pwm;
+		}
 		pwm = new mraa::Pwm(m_pin);
 		if (pwm == NULL) {
 			return RTC::RTC_ERROR;
     		}
 		pwm->enable(true);
+		last_pin = m_pin;
 	}
   return RTC::RTC_OK;
 }

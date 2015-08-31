@@ -250,6 +250,7 @@ void ADC_MCP3208Comp::writeValue(MCP3208 *mcp, double v)
 	if(act)
 	{
 		Out->data = v/4096.0 * (double)mcp->getValue(m_num);
+		setTimestamp(*Out);
 		outOut->write();
 	}
 }

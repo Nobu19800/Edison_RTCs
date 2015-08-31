@@ -4,6 +4,7 @@
  *
  */
 
+#define _USE_MATH_DEFINES
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
@@ -354,7 +355,7 @@ void LSM9DS0::getOrientation(double &rx, double &ry, double &rz)
 {
 	
 
-	ry = atan2(lastAY,lastAZ);
+	ry = atan2(lastAY,lastAZ)-M_PI;
 	rx = atan2(-lastAX,sqrt(lastAY*lastAY+lastAZ*lastAZ));
 
 	
@@ -364,7 +365,7 @@ void LSM9DS0::getOrientation(double &rx, double &ry, double &rz)
 
 	
 
-	rz = atan2(-myi,mxi);
+	rz = atan2(myi,mxi);
 
 	//std::cout << rz << "\t" << lastMX << "\t" << lastMY << "\t" << lastMZ << std::endl;
 }
@@ -540,11 +541,11 @@ void LSM9DS0::getGyroData(double &avx, double &avy, double &avz) {
 
 	double gRes;
 	if(_Gscale == LSM9DS0_GYROSCALE_245DPS)
-		gRes = LSM9DS0_GYRO_DPS_DIGIT_245DPS*3.141592/180;
+		gRes = LSM9DS0_GYRO_DPS_DIGIT_245DPS*M_PI/180;
 	else if(_Gscale == LSM9DS0_GYROSCALE_500DPS)
-		gRes = LSM9DS0_GYRO_DPS_DIGIT_500DPS*3.141592/180;
+		gRes = LSM9DS0_GYRO_DPS_DIGIT_500DPS*M_PI/180;
 	else
-		gRes = LSM9DS0_GYRO_DPS_DIGIT_2000DPS*3.141592/180;
+		gRes = LSM9DS0_GYRO_DPS_DIGIT_2000DPS*M_PI/180;
 
 	avx = (double)GyroRaw_x * gRes;
 	avy = (double)GyroRaw_y * gRes;

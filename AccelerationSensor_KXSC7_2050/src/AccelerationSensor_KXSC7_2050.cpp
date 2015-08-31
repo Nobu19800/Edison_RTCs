@@ -20,7 +20,7 @@ static const char* accelerationsensor_kxsc7_2050_spec[] =
     "description",       "AccelerationSensor_KXSC7_2050",
     "version",           "1.0.0",
     "vendor",            "Miyamoto Nobuhiko",
-    "category",          "Device",
+    "category",          "Sensor",
     "activity_type",     "PERIODIC",
     "kind",              "DataFlowComponent",
     "max_instance",      "1",
@@ -160,6 +160,7 @@ RTC::ReturnCode_t AccelerationSensor_KXSC7_2050::onExecute(RTC::UniqueId ec_id)
 		m_out.data.ax = ax;
 		m_out.data.ay = ay;
 		m_out.data.az = az;
+		setTimestamp(m_out);
 		m_outOut.write();
 	}
   return RTC::RTC_OK;

@@ -20,7 +20,7 @@ static const char* gyrosensor_enc_03r_spec[] =
     "description",       "GyroSensor_ENC_03R",
     "version",           "1.0.0",
     "vendor",            "Miyamoto Nobuhiko",
-    "category",          "Device",
+    "category",          "Sensor",
     "activity_type",     "PERIODIC",
     "kind",              "DataFlowComponent",
     "max_instance",      "1",
@@ -152,7 +152,9 @@ RTC::ReturnCode_t GyroSensor_ENC_03R::onExecute(RTC::UniqueId ec_id)
 		gyroSensor->getAngularVelocity(avx,avy);
 		m_avx.data = avx;
 		m_avy.data = avy;
+		setTimestamp(m_avx);
 		m_avxOut.write();
+		setTimestamp(m_avy);
 		m_avyOut.write();
 	}
   return RTC::RTC_OK;

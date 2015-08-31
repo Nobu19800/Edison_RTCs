@@ -142,6 +142,7 @@ RTC::ReturnCode_t ADC_Edison::onExecute(RTC::UniqueId ec_id)
 	{
 		double vol = (double)a->readFloat();
 		m_out.data = vol*m_voltage;
+		setTimestamp(m_out);
 		m_outOut.write();
 	}
   return RTC::RTC_OK;
