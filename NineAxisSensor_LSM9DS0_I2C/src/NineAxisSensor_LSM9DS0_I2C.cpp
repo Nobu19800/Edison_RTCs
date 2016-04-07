@@ -252,7 +252,7 @@ RTC::ReturnCode_t NineAxisSensor_LSM9DS0_I2C::onExecute(RTC::UniqueId ec_id)
 
 	if(accSensor)
 	{
-		std::cout << "test" << std::endl;
+
 		accSensor->getAcc(ax,ay,az);
 		m_acc.data.ax = ax;
 		m_acc.data.ay = ay;

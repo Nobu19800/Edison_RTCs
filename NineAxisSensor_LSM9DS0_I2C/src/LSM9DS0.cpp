@@ -355,8 +355,8 @@ void LSM9DS0::getOrientation(double &rx, double &ry, double &rz)
 {
 	
 
-	ry = atan2(lastAY,lastAZ)-M_PI;
-	rx = atan2(-lastAX,sqrt(lastAY*lastAY+lastAZ*lastAZ));
+	rx = atan2(lastAY,lastAZ)-M_PI;
+	ry = atan2(-lastAX,sqrt(lastAY*lastAY+lastAZ*lastAZ));
 
 	
 
